@@ -1,0 +1,100 @@
+---
+name: Kristina
+surname: Gagalova, Ph.D.
+position: "Research scientist"
+address: "Genome Sciences Centre - Vancouver, Canada"
+twitter: GagalovaK
+github: KristinaGagalova
+linkedin: kristina-gagalova
+date: "`r format(Sys.time(), '%B %Y')`"
+aboutme: "I am a Ph.D. graduate in Bioinformatics and I have pursued two Master's degrees in science. My research is focused in plant and evolutionary genomics. I have +3 years of work experience in industry and startups"
+output: vitae::moderncv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Summary
+
+ * Double academic curriculum with Master’s degrees in Bioinformatics and
+Biotechnology. Solid basics in molecular biology and genetics
+ * Deep understanding of bioinformatics algorithms and omics data analysis and multi-omics data analysis
+ * Knowledge of classical and modern machine learning algorithms
+ * Successfully completed a research-based Ph.D. in genomics, delivered with the publication of several peer-reviewed papers
+ * Extensive collaboration with researchers from different scientific backgrounds
+ * Successful project delivery in the context of omics research and data analysis
+ 
+
+# Education and training
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "Ph.D. doctorate - Bioinformatics", "2017-2022", "University of British Columnbia", "Vancouver, Canada",
+  "Master of science - Bioinformatics", "2013-2015", "Vrije University", "Amsterdam, The Netherlands",
+  "Master of science - Biotechnology", "2010-2013", "University of Bologna", "Bologna, Italy",
+   "Bachelor of science - Biotechnology", "2007-2010", "University of Bologna", "Bologna, Italy",
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+# Work experience
+
+```{r}
+library(tibble)
+tribble(
+  ~Degree, ~Year, ~Institution, ~Where,
+  "Research scientist", "Sep 2020 - Oct 2022", "Willow Biosciences Inc.", "Burnaby, Canada",
+  "Data analyst", "Sep 2018 - Aug 2020", "BC Childrens Hospital", "Vancouver, Canada",
+  "Bioinformatician", "Mar 2016 - Dec 2016", "GenomeScan", "Leiden, The Netherlands",
+   "Data analyst", "Oct 2015 - Feb 2016", "MIMETAS", "Leiden, The Netherlands",
+) %>% 
+  detailed_entries(
+    what=Degree, 
+    when=Year,
+    with=Institution, 
+    where=Where
+    )
+```
+
+# Awards and Fellowships
+
+```{r}
+tribble(
+  ~Year, ~Type, ~Desc,
+  2018, "ECOSCOPE graduate trainee fellowship", "NSERC CREATE Graduate Training Program provides UBC graduate students with the skills needed to translate academic research into commercial and entrepreneurial activities",
+  2017, "4YF - 4 years fellowship", "Four Year Doctoral Fellowship to support outstanding international students",
+  2015, "Max Planck Institute and Erasmus+ fellowship", "Master's degree fellowship for international internship",
+  2013, "VUFP-VU", "Vrije University fellowship for talented international students",
+  2013, "University of Bologna: Mathematical, Physical, and Natural science traveling grant - in collaboration with the Rijksuniversiteit Groningen", "Master's degree fellowship for international internship",
+  2013, "FindAMasters fellowship", "Biological Sciences Scholarship",
+  2007, "ER.GO education grant", "Bachelor and Master's fellowship"
+) %>% 
+  brief_entries(
+    Type,
+    Year, 
+    Desc
+  )
+```
+
+# Publications
+
+```{r}
+library(dplyr)
+
+options(encoding = "UTF-8")
+scholar::get_publications("1claeqYAAAAJ") %>%
+  distinct(title, .keep_all = TRUE) %>%
+  transmute(bibtype = "Article", author = as.character(author),
+            title = as.character(title),
+            journaltitle = as.character(journal), year, key = row_number()) %>%
+  RefManageR::as.BibEntry() %>%
+  RefManageR::WriteBib("gagalova.bib")
+
+bibliography_entries("gagalova.bib") %>%
+ arrange(desc(issued))
+```
+
