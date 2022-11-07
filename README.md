@@ -1,4 +1,4 @@
-## About me
+## About me :earth_americas: :herb: :evergreen_tree:
 
 Please find my [CV](https://github.com/KristinaGagalova/my_CV/blob/main/My_cv.pdf) created with the vitae package in R.    
 
